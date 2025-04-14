@@ -1,0 +1,54 @@
+@startuml Basic RudaWies Classes
+
+skinparam classAttributeIconSize 0
+
+class Tile {
+  + enum Feature { ROAD, CITY, FIELD, MONASTERY }
+  - features: vector<Feature>
+  + Tile(const vector<Feature>&)
+  + getFeatures(): const vector<Feature>&
+}
+
+class Board {
+  - grid: vector<vector<unique_ptr<Tile>>>
+  + Board()
+  + placeTile(const Tile&, int, int): bool
+}
+
+class Player {
+  - name: string
+  - score: int
+  + Player(const string&)
+  + getName(): const string&
+  + getScore(): int
+  + addScore(int)
+}
+
+class Game {
+  - board: Board
+  - players: vector<Player>
+  - tileDeck: vector<Tile>
+  + Game()
+  + addPlayer(const string&)
+  + start()
+  - initializeTiles()
+  - playTurn()
+}
+
+class ConsoleUI {
+  - game: Game&
+  + ConsoleUI(Game&)
+  + run()
+  - displayBoard()
+  - displayScores()
+  - handlePlayerInput()
+}
+
+Game "1" *-- "1" Board : contains >
+Game "1" *-- "0..*" Player : contains >
+Game "1" *-- "0..*" Tile : contains in deck >
+Board "1" *-- "0..*" Tile : contains placed >
+ConsoleUI ..> Game : uses >
+
+hide empty members
+@enduml
