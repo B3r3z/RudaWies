@@ -1,0 +1,27 @@
+# Ignore build artifacts
+build/
+
+# Ignore CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore editor-specific files
+*.swp
+*.swo
+*.user
+*.idea/
+.vscode/
+
+# Ignore compiled binaries
+*.o
+*.so
+*.a
+*.out
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.bak
+*.~*
